@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.exception.CustomException;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.Dish;
 import com.example.demo.repository.DishRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/cuisine")
@@ -25,7 +25,7 @@ public class DishController {
     public Dish addDish(@Valid @RequestBody Dish dish) {
         Dish dishh = this.dishRepo.save(dish);
         if (dishh == null) {
-            throw new CustomException("Dish could not be added !!!");
+            throw new NotFoundException("Dish could not be added !!!");
         }
         return dishh;
     }
@@ -34,7 +34,7 @@ public class DishController {
     public Dish getDishWithId(@PathVariable Long id) {
         Dish d = this.dishRepo.findDishForId(id);
         if (d == null) {
-            throw new CustomException("Dish Not found for id " + id);
+            throw new NotFoundException("Dish Not found for id " + id);
         }
         return d;
     }
@@ -43,8 +43,13 @@ public class DishController {
     public Dish fetchDishForCountry(@RequestParam("name") String name) {
         Dish d = this.dishRepo.findDishUsingCountry(name);
         if (d == null) {
-            throw new CustomException("Dish not found for " + name);
+            throw new NotFoundException("Dish not found for " + name);
         }
         return d;
+    }
+
+    @GetMapping("/bad")
+    public void badReqException(){
+        throw new BadRequestException("Resource Not FOUND !!!");
     }
 }

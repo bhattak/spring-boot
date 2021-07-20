@@ -1,14 +1,13 @@
 package com.example.demo.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "country")
-@Data
+@Getter
+@Setter
 @NonNull
 @NoArgsConstructor
 public class Country {
