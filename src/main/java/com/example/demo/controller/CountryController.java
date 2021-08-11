@@ -13,9 +13,14 @@ public class CountryController {
     @Autowired
     private CountryRepo countryRepo;
 
-    @GetMapping("/welcome")
+    @GetMapping
     public String helloThere() {
         return "Welcome to the Country-Side Mate !!!";
+    }
+
+    @GetMapping("/fetch")
+    public List<Country> doFetchCountry(){
+        return countryRepo.fetchCountry();
     }
 
     @PostMapping("/add")
@@ -58,6 +63,9 @@ public class CountryController {
         this.countryRepo.deleteUsingNativeQuery(name);
     }
 
+    /*
+        Update country with particular id
+     */
     @PutMapping("/update")
     public void updateIt(@RequestParam("name") String name, @RequestParam("id") Integer id) {
         this.countryRepo.updateUserWithId(name, id);

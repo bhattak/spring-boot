@@ -18,12 +18,12 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
+//    @NotEmpty
     private String name;
 
-    @NotEmpty
+//    @NotEmpty
     private String country;
 
-    @NotNull
+//    @NotNull
     private Integer year;
 }

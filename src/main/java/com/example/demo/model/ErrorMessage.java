@@ -27,4 +27,5 @@ public class ErrorMessage {
     @NotEmpty
     @Temporal(TemporalType.TIME)
     private Date time;
+
 }

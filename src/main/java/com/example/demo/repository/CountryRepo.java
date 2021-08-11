@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface CountryRepo extends CrudRepository<Country, Long> {
 
+    @Query("select c from Country c where c.id between 5 and 9")
+    List<Country> fetchCountry();
+
     @Query(value = "select * from country  where continent =:continent", nativeQuery = true)
     List<Country> countNumberOfCountries(String continent);
 
